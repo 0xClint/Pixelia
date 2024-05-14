@@ -1,9 +1,13 @@
 import { ethers } from "ethers";
 import {
+  ITEM_NFT_CONTRACT_ABI,
+  ITEM_NFT_CONTRACT_ADDRESS,
   WORLD_CONTRACT_ABI,
   WORLD_CONTRACT_ADDRESS,
 } from "../Contracts/constant";
 import { makeFileObjects, uploadFile } from "./lightouse";
+
+// ***********world NFT contract************
 
 export const createWorldFunc = async (signer, name, description) => {
   const CID = await uploadFile(await makeFileObjects({ cubes: [], items: [] }));
@@ -24,9 +28,9 @@ export const createWorldFunc = async (signer, name, description) => {
     console.error("Error calling contract function:", error);
   }
 };
+
 export const updateWorldFunc = async (signer, tokenID, objData) => {
   const CID = await uploadFile(await makeFileObjects(objData));
-  console.log(tokenID, CID);
   try {
     const contract = new ethers.Contract(
       WORLD_CONTRACT_ADDRESS,
@@ -71,15 +75,31 @@ export const getNFTsByOwnerFunc = async (signer) => {
   }
 };
 
-export const nextTokenIdFunc = async (signer) => {
+// ***********item NFT contract************
+
+export const mintitemNFTFunc = async (signer, itemID) => {
   try {
     const contract = new ethers.Contract(
-      WORLD_CONTRACT_ADDRESS,
-      WORLD_CONTRACT_ABI,
+      ITEM_NFT_CONTRACT_ADDRESS,
+      ITEM_NFT_CONTRACT_ABI,
       signer
     );
-    const res = await contract.nextTokenId();
-    console.log(res);
+    const tx = await contract.mint(itemID, { value: 10000 });
+    await tx.wait();
+  } catch (error) {
+    console.error("Error calling contract function:", error);
+  }
+};
+
+export const getItemNFTsByOwnerFunc = async (signer) => {
+  try {
+    const contract = new ethers.Contract(
+      ITEM_NFT_CONTRACT_ADDRESS,
+      ITEM_NFT_CONTRACT_ABI,
+      signer
+    );
+    const account = await signer.getAddress();
+    const res = await contract.getItemsForUser(account);
     return res;
   } catch (error) {
     console.error("Error calling contract function:", error);

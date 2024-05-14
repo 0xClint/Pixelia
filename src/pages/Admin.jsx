@@ -3,8 +3,9 @@ import { ethers } from "ethers";
 import {
   createWorldFunc,
   getAllNFTsFunc,
+  getItemNFTsByOwnerFunc,
   getNFTsByOwnerFunc,
-  nextTokenIdFunc,
+  mintitemNFTFunc,
   updateWorldFunc,
 } from "../utils/contractFunctionCall";
 
@@ -36,12 +37,20 @@ const Admin = () => {
     await getNFTsByOwnerFunc(signer);
   };
 
-  const nextTokenId = async () => {
+  const mintItemNFT = async () => {
     const provider = new ethers.providers.Web3Provider(window.ethereum);
     await provider.send("eth_requestAccounts", []);
     const signer = await provider.getSigner();
-    await nextTokenIdFunc(signer);
+    mintitemNFTFunc(signer, 9);
   };
+
+  const getItemNFTsByOwner = async () => {
+    const provider = new ethers.providers.Web3Provider(window.ethereum);
+    await provider.send("eth_requestAccounts", []);
+    const signer = await provider.getSigner();
+    getItemNFTsByOwnerFunc(signer);
+  };
+
   return (
     <div className="adminpage w-screen flex px-20 gap-10 pt-10">
       <div className="w-1/2 make-flex flex-col">
@@ -49,7 +58,10 @@ const Admin = () => {
         <button onClick={() => updateWorld()}>Update World</button>
         <button onClick={() => getAllNFTs()}>get all NFTS</button>
         <button onClick={() => getNFTsByOwner()}>get NFTs By Owner</button>
-        <button onClick={() => nextTokenId()}>get Next Token ID</button>
+      </div>
+      <div className="w-1/2 make-flex flex-col">
+        <button onClick={() => mintItemNFT()}>mintItemNFT</button>
+        <button onClick={() => getItemNFTsByOwner()}>getItemNFTsByOwner</button>
       </div>
     </div>
   );

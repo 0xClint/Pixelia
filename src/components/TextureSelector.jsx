@@ -122,10 +122,8 @@ const TextureSelector = () => {
       saveBtn,
       profileMenu,
     };
-    console.log(textures);
     const pressedTexture = Object.entries(textures).find(([k, v]) => v);
     if (pressedTexture) {
-      console.log(pressedTexture);
       if (pressedTexture[0] == "chatMenu") {
         setChatBar(!chatBar);
         setActiveConfig(activeConfig == "chatMenu" ? "e" : "chatMenu");

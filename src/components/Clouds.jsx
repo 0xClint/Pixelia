@@ -6,7 +6,7 @@ const Cloud = ({ position, scale }) => {
 
   useFrame(() => {
     if (cloudRef.current) {
-      cloudRef.current.position.x -= 0.01; // Move the cloud horizontally
+      cloudRef.current.position.x -= 0.001; // Move the cloud horizontally
     }
   });
 

@@ -89,10 +89,11 @@ export const useStore = create((set) => ({
   },
   NFTData: [],
   setNFTData: (args) => {
+    console.log(args);
     if (args) {
       const data = imgData;
       data.forEach((item1) => {
-        item1.isOpen = args.some((item2) => item2.cid == item1.texture);
+        item1.isOpen = args.some((item2) => Number(item2) == item1.tokenId);
       });
       set(() => ({
         NFTData: [...data],

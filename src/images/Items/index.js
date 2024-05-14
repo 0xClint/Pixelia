@@ -12,18 +12,16 @@ import flower5 from "./flower5.png";
 import flower6 from "./flower6.png";
 
 export const imgData = [
-  { texture: "grass1", src: grass1, isOpen: false },
-  { texture: "grass2", src: grass2, isOpen: false },
-  { texture: "grass3", src: grass3, isOpen: false },
-  { texture: "grass4", src: grass4, isOpen: false },
-  { texture: "grass5", src: grass5, isOpen: false },
-  { texture: "grass6", src: grass6, isOpen: false },
-  { texture: "flower1", src: flower1, isOpen: false },
-  { texture: "flower2", src: flower2, isOpen: false },
-  { texture: "flower3", src: flower3, isOpen: false },
-  { texture: "flower4", src: flower4, isOpen: false },
-  { texture: "flower5", src: flower5, isOpen: false },
-  { texture: "flower6", src: flower6, isOpen: false },
+  { texture: "grass1", src: grass1, isOpen: false, tokenId: 0 },
+  { texture: "grass2", src: grass2, isOpen: false, tokenId: 1 },
+  { texture: "grass3", src: grass3, isOpen: false, tokenId: 2 },
+  { texture: "grass4", src: grass4, isOpen: false, tokenId: 3 },
+  { texture: "grass5", src: grass5, isOpen: false, tokenId: 4 },
+  { texture: "flower1", src: flower1, isOpen: false, tokenId: 5 },
+  { texture: "flower2", src: flower2, isOpen: false, tokenId: 6 },
+  { texture: "flower3", src: flower3, isOpen: false, tokenId: 7 },
+  { texture: "flower4", src: flower4, isOpen: false, tokenId: 8 },
+  { texture: "flower5", src: flower5, isOpen: false, tokenId: 9 },
 ];
 
 export {

@@ -24,6 +24,7 @@ import { useStore } from "../hooks/useStore";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 import Clouds from "../components/Clouds";
+import { getItemNFTsByOwnerFunc } from "../utils/contractFunctionCall";
 
 const Game = () => {
   const [
@@ -104,9 +105,9 @@ const Game = () => {
       await provider.send("eth_requestAccounts", []);
       const signer = await provider.getSigner();
       try {
-        // const tempData = await fetchUserItemMetadata(signer);
-        // console.log(tempData);
-        // setNFTData(tempData);
+        const tempData = await getItemNFTsByOwnerFunc(signer);
+        console.log(tempData);
+        setNFTData(tempData);
       } catch (error) {
         console.log(error);
       }
@@ -124,10 +125,6 @@ const Game = () => {
       setData(res.data);
     };
     fetchData();
-  }, [isWeb3Enabled]);
-
-  useEffect(() => {
-    getLevelcompleted();
   }, [isWeb3Enabled]);
 
   const getLevelcompleted = async () => {

@@ -1,5 +1,4 @@
-import React, { useEffect, useState } from "react";
-import { BagIcon, gearIcon, landImg, landsImg } from "../assets";
+import React, {  useState } from "react";
 import { imgData } from "../images/Items/index";
 import { useStore } from "../hooks/useStore";
 

@@ -12,7 +12,7 @@ import {
   treeImg,
 } from "../images/block_icons/images";
 import {
-  BagIcon,
+
   InfoIcon,
   bagPackIcon,
   chatIcon,

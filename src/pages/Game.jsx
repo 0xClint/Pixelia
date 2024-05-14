@@ -16,8 +16,6 @@ import {
   Menu,
   Player,
   Shop,
-  StartMenu,
-  TempCube,
   TextureSelector,
 } from "../components";
 import { useStore } from "../hooks/useStore";
@@ -83,21 +81,19 @@ const Game = () => {
   //   getGameData();
   // }, []);
 
-  useEffect(() => {
-    const getAllNFTsMinted = async () => {
-      const provider = new ethers.providers.Web3Provider(window.ethereum);
-      await provider.send("eth_requestAccounts", []);
-      const signer = await provider.getSigner();
-      try {
-        // const res = await getAllNFTsTotalSupplyItemURI(signer);
-        // setAllNFTsData(res);
-        // console.log("NFT : " + res);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-    getAllNFTsMinted();
-  }, [isWeb3Enabled]);
+  // useEffect(() => {
+  //   const getAllNFTsMinted = async () => {
+  //     const provider = new ethers.providers.Web3Provider(window.ethereum);
+  //     await provider.send("eth_requestAccounts", []);
+  //     const signer = await provider.getSigner();
+  //     try {
+
+  //     } catch (error) {
+  //       console.log(error);
+  //     }
+  //   };
+  //   getAllNFTsMinted();
+  // }, [isWeb3Enabled]);
 
   useEffect(() => {
     const fetchItemNFTsData = async () => {
@@ -174,7 +170,6 @@ const Game = () => {
       {inventoryBar && <Inventory />}
       <Header />
       {loader && <Loader />}
-      {/* {menu && <StartMenu />} */}
     </div>
   );
 };

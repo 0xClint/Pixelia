@@ -7,10 +7,8 @@ import Ground from "./Ground";
 import Menu from "./Menu";
 import Plane from "./Plane";
 import Player from "./Player";
-import TempCube from "./tempCube";
 import WalletConnect from "./ConnectWallet";
 import TextureSelector from "./TextureSelector";
-import StartMenu from "./StartMenu";
 import Shop from "./Shop";
 import Item from "./Item";
 import Items from "./Items";
@@ -27,10 +25,8 @@ export {
   Menu,
   Plane,
   Player,
-  TempCube,
   WalletConnect,
   TextureSelector,
-  StartMenu,
   Shop,
   Item,
   Items,

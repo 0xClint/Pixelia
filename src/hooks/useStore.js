@@ -1,16 +1,6 @@
 import { nanoid } from "nanoid";
 import create from "zustand";
-import {
-  flowersCoordinates,
-  grassCoordinates,
-  treesCoordinates,
-} from "../assets/preData";
 import { imgData } from "../images/Items";
-import { dataLevel } from "../assets/dataLevel";
-
-const getlocalStorage = (key) => JSON.parse(window.localStorage.getItem(key));
-const setLocalStorage = (key, value) =>
-  window.localStorage.setItem(key, JSON.stringify(value));
 
 export const useStore = create((set) => ({
   blockTexture: "grass",
@@ -75,10 +65,6 @@ export const useStore = create((set) => ({
   setSwitchModal: (toggle) => {
     set(() => ({ switchModal: toggle }));
   },
-  targetCubes: [...dataLevel],
-  setTargetCubes: (toggle) => {
-    set(() => ({ targetCubes: toggle }));
-  },
   allNFTsData: [],
   setAllNFTsData: (args) => {
     if (args) {
@@ -131,48 +117,5 @@ export const useStore = create((set) => ({
   shopMenu: false,
   setShopMenu: (toggle) => {
     set(() => ({ shopMenu: toggle }));
-  },
-
-  flowers: flowersCoordinates,
-  addFlower: (x, y, z) => {
-    set((prev) => ({
-      flowers: [
-        ...prev.flowers,
-        { key: nanoid(), pos: [x, y, z], texture: prev.texture },
-      ],
-    }));
-  },
-  removeFlower: (x, y, z) => {
-    set((prev) => ({
-      flowers: prev.flowers.filter((flower) => {
-        const [X, Y, Z] = flower.pos;
-        return X !== x || Y !== y || Z !== z;
-      }),
-    }));
-  },
-  grass: grassCoordinates,
-  addGrass: (x, y, z) => {
-    set((prev) => ({
-      grass: [
-        ...prev.grass,
-        { key: nanoid(), pos: [x, y, z], texture: prev.texture },
-      ],
-    }));
-  },
-  removeGrass: (x, y, z) => {
-    set((prev) => ({
-      grass: prev.grass.filter((item) => {
-        const [X, Y, Z] = item.pos;
-        return X !== x || Y !== y || Z !== z;
-      }),
-    }));
-  },
-  saveWorld: () => {
-    set((prev) => {
-      setLocalStorage("cubes", prev.cubes);
-    });
-  },
-  resetWorld: () => {
-    set(() => ({ cubes: [] }));
   },
 }));

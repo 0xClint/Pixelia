@@ -41,7 +41,7 @@ const Menu = () => {
         <li className="cursor-pointer hover:text-[#797979]">Save</li>
       </ul>
       {controlMenu && (
-        <ul className=" absolute translate-x-[420px] menu-container w-[500px]  py-12 card-container make-flex flex-col gap-8 rounded-3xl">
+        <ul className=" absolute translate-x-[420px] menu-container w-[500px]  py-12 card-container make-flex flex-col gap-5 rounded-3xl">
           <li className=" flex justify-between w-[80%] ">
             <div className="">W</div>
             <div className="">Forward</div>

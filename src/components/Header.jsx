@@ -5,6 +5,7 @@ import ConnectWallet from "./ConnectWallet";
 import { ethers } from "ethers";
 import Loader from "./Loader";
 import { updateWorldFunc } from "../utils/contractFunctionCall";
+import { Link } from "react-router-dom";
 
 const Header = ({ isHome }) => {
   const [loader, setLoader] = useState(false);
@@ -61,9 +62,11 @@ const Header = ({ isHome }) => {
     <div className="absolute z-10 top-0 w-screen flex flex-col">
       <div className="w-full flex text-[2rem] justify-between items-center h-16 px-5 ">
         <div className="flex gap-4 items-center">
-          <div className="leading-7 m-0 p-0">
-            <img src={pixeliaLogo} className="h-8  " />
-          </div>
+          <Link to="/" className="cursor-pointer">
+            <div className="leading-7 m-0 p-0">
+              <img src={pixeliaLogo} className="h-8  " />
+            </div>
+          </Link>
         </div>
 
         <div className="flex items-center justify-center gap-3">

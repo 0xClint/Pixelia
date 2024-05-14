@@ -208,7 +208,7 @@ const TextureSelector = () => {
       <div className="texture-selector icon-container">
         {Object.entries(images).map(([k, src], index) => {
           return (
-            <div>
+            <div key={k}>
               <span className="absolute text-[10px] m-1 translate-x-[6px] translate-y-[6px] text-[#7b260c] font-semibold">
                 {index + 1}
               </span>

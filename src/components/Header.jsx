@@ -4,6 +4,7 @@ import { useStore } from "../hooks/useStore";
 import ConnectWallet from "./ConnectWallet";
 import { ethers } from "ethers";
 import Loader from "./Loader";
+import { updateWorldFunc } from "../utils/contractFunctionCall";
 
 const Header = ({ isHome }) => {
   const [loader, setLoader] = useState(false);
@@ -49,6 +50,7 @@ const Header = ({ isHome }) => {
       const provider = new ethers.providers.Web3Provider(window.ethereum);
       await provider.send("eth_requestAccounts", []);
       const signer = await provider.getSigner();
+      await updateWorldFunc(signer, activeWorldID, objData);
       setLoader(false);
     } catch (error) {
       console.log(error);

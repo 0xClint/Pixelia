@@ -36,32 +36,11 @@ const Home = () => {
 
       try {
         setLoader(true);
-        const CID = await createWorldFunc(signer, worldName, worldDescription);
-        await createWorldFunc(signer);
-
+        const data = await createWorldFunc(signer, worldName, worldDescription);
+        setActiveWorldID(data.nextToken);
         setLoader(false);
-        // setActiveWorldID(Number(_worldList[1][_worldList[0].length - 1]._hex));
-        // setTimeout(() => {
-        //   navigate(`/world/${CID}`);
-        // }, 1000);
-      } catch (error) {
-        console.log(error);
-      }
-    }
-  };
-
-  // useEffect(() => {
-  //   getLevelcompleted();
-  // }, [isWeb3Enabled]);
-
-  const getLevelcompleted = async () => {
-    if (isWeb3Enabled) {
-      try {
-        const provider = new ethers.providers.Web3Provider(window.ethereum);
-        await provider.send("eth_requestAccounts", []);
-        const signer = provider.getSigner();
-        // setLevel(await fetchLevel(signer));
-        setLoader(false);
+        setNewWorldMenu(false);
+        navigate(`/world/${data.CID}`);
       } catch (error) {
         console.log(error);
       }
@@ -81,7 +60,6 @@ const Home = () => {
       console.log(error);
     }
   };
-  console.log(worldList);
 
   return (
     <div className="homepage">
@@ -126,21 +104,22 @@ const Home = () => {
         <div className="control setting menu absolute h-screen w-screen make-flex">
           <div>
             <div
-              className="absolute w-[500px]  make-flex text-white justify-end px-2 pt-2 cursor-pointer"
+              className="absolute w-[490px]  make-flex text-black justify-end px-2 pt-2 cursor-pointer"
               onClick={() => setLoadGame(false)}
             >
               <span>X</span>
             </div>
-            <ul className=" z-100 gameloader-container w-[500px] bg-[#9b9b9bcb] min-h-[300px] py-12 card-container make-flex justify-start flex-col gap-3 px-7">
+            <ul className=" z-100 gameloader-container w-[500px] text-black bg-[#dce4b7] min-h-[300px] py-12 card-container make-flex justify-start flex-col gap-3 px-7">
               {worldList && worldList.length ? (
                 worldList.map(({ name, tokenId, uri }) => {
                   const tokenID = Number(tokenId);
                   return (
                     <li
-                      className=" text-center w-full py-1  cursor-pointer hover:bg-[#e8e8e8]"
+                      className=" text-center w-full py-1  cursor-pointer hover:bg-[#d0d85c]"
                       key={tokenID}
                       onClick={() => {
                         setActiveWorldID(tokenID);
+                        setLoadGame(false);
                         navigate(`/world/${uri}`);
                       }}
                     >

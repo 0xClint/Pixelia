@@ -23,6 +23,7 @@ import {
 import { useStore } from "../hooks/useStore";
 import axios from "axios";
 import { useParams } from "react-router-dom";
+import Clouds from "../components/Clouds";
 
 const Game = () => {
   const [
@@ -146,15 +147,17 @@ const Game = () => {
   return (
     <div className="game-app">
       <Canvas style={{ height: "100vh" }}>
-        <Sky sunPosition={[100, 50, 20]} turbidity={1} />
-        <ambientLight intensity={0.5} />
+        <Sky sunPosition={[100, 40, 20]} turbidity={4} />
         <PointerLockControls selector="#enter-game" />
+        <ambientLight intensity={0.6} />
         <Physics>
+          <Clouds />
           <Player />
           <Ground />
           <Items />
           <Cubes />
         </Physics>
+        <Stars />
       </Canvas>
       <div
         className="absolute centered cursor enter-game"
@@ -179,4 +182,23 @@ const Game = () => {
   );
 };
 
+const Stars = () => {
+  return (
+    <group>
+      {Array.from({ length: 100 }).map((_, i) => (
+        <mesh
+          key={i}
+          position={[
+            Math.random() * 1000 - 500,
+            Math.random() * 1000 - 500,
+            Math.random() * 1000 - 500,
+          ]}
+        >
+          <sphereGeometry args={[Math.random() * 2]} />
+          <meshBasicMaterial color={0xffffff} />
+        </mesh>
+      ))}
+    </group>
+  );
+};
 export default Game;

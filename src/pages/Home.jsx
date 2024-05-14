@@ -196,8 +196,8 @@ const Home = () => {
       )}
       <img src={bgImg} className="absolute -z-10 h-screen w-screen" />
       <Header isHome={true} />
-      <div className="make-flex justify-start pt-28 w-screen h-screen flex-col">
-        <img src={pixeliaLogo} className="h-28" />
+      <div className="make-flex justify-start pt-32 w-screen h-screen flex-col gap-8">
+        <img src={pixeliaLogo} className="h-20" />
         <div className="w-screen mx-auto h-[300px] make-flex gap-14">
           <div
             onClick={() => setNewWorldMenu(true)}

@@ -1,0 +1,56 @@
+.texture-selector {
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  bottom: 0%;
+}
+.icon-container img {
+  border-radius: 10px;
+  margin: 5px 5px;
+  background-color: #c14a2656;
+
+  height: 50px;
+  width: auto;
+  transform-origin: center;
+  padding: 12px;
+  border: 1px solid #8f2d0fd0;
+}
+
+.level-item {
+  border-radius: 10px;
+  /* margin: 5px 5px; */
+  /* background-color: rgba(198, 198, 198, 0.544); */
+  height: 35px;
+  padding: 0 10px;
+  text-align: center;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid white;
+}
+
+.configIcon {
+  border-radius: 10px;
+  margin: 5px 5px;
+  background-color: rgba(198, 198, 198, 0.544);
+  height: 50px;
+  width: auto;
+  transform-origin: center;
+  padding: 12px;
+  border: 1px solid white;
+}
+
+.icon-container img.active {
+  border: 3px solid #8f2d0fd0;
+  border: 3px solid #7b260c;
+}
+
+.menu {
+  top: 0px;
+  left: 10px;
+}

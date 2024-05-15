@@ -1,6 +1,7 @@
 import React from "react";
 import { ethers } from "ethers";
 import {
+  createCustomItemFunc,
   createWorldFunc,
   getAllNFTsFunc,
   getItemNFTsByOwnerFunc,
@@ -50,6 +51,12 @@ const Admin = () => {
     const signer = await provider.getSigner();
     getItemNFTsByOwnerFunc(signer);
   };
+  const createCustomItem = async () => {
+    const provider = new ethers.providers.Web3Provider(window.ethereum);
+    await provider.send("eth_requestAccounts", []);
+    const signer = await provider.getSigner();
+    createCustomItemFunc(signer, "cutomItem1", "customItemdescripton1");
+  };
 
   return (
     <div className="adminpage w-screen flex px-20 gap-10 pt-10">
@@ -62,6 +69,7 @@ const Admin = () => {
       <div className="w-1/2 make-flex flex-col">
         <button onClick={() => mintItemNFT()}>mintItemNFT</button>
         <button onClick={() => getItemNFTsByOwner()}>getItemNFTsByOwner</button>
+        <button onClick={() => createCustomItem()}>createCustomItem</button>
       </div>
     </div>
   );

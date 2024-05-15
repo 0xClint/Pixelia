@@ -75,7 +75,6 @@ export const useStore = create((set) => ({
   },
   NFTData: [],
   setNFTData: (args) => {
-    console.log(args);
     if (args) {
       const data = imgData;
       data.forEach((item1) => {

@@ -102,7 +102,6 @@ const Game = () => {
       const signer = await provider.getSigner();
       try {
         const tempData = await getItemNFTsByOwnerFunc(signer);
-        console.log(tempData);
         setNFTData(tempData);
       } catch (error) {
         console.log(error);

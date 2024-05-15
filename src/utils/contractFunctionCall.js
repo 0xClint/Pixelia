@@ -6,6 +6,7 @@ import {
   WORLD_CONTRACT_ADDRESS,
 } from "../Contracts/constant";
 import { makeFileObjects, uploadFile } from "./lightouse";
+import { nanoid } from "nanoid";
 
 // ***********world NFT contract************
 
@@ -101,6 +102,43 @@ export const getItemNFTsByOwnerFunc = async (signer) => {
     const account = await signer.getAddress();
     const res = await contract.getItemsForUser(account);
     return res;
+  } catch (error) {
+    console.error("Error calling contract function:", error);
+  }
+};
+
+// ***********item NFT contract************
+
+export const createCustomItemFunc = async (signer, name, description) => {
+  try {
+    const contract = new ethers.Contract(
+      ITEM_NFT_CONTRACT_ADDRESS,
+      ITEM_NFT_CONTRACT_ABI,
+      signer
+    );
+    const tx = await contract.createItemByUser(
+      name,
+      description,
+      10000,
+      100,
+      parseInt(1000 * Math.random())
+    );
+    await tx.wait();
+  } catch (error) {
+    console.error("Error calling contract function:", error);
+  }
+};
+export const getNextItemIDFunc = async (signer) => {
+  try {
+    const contract = new ethers.Contract(
+      ITEM_NFT_CONTRACT_ADDRESS,
+      ITEM_NFT_CONTRACT_ABI,
+      signer
+    );
+    const account = await signer.getAddress();
+    const res1 = await contract.nextItemId();
+    const res2 = await contract.items(Number(res1) - 1);
+    return res2.owner == account ? res2 : null;
   } catch (error) {
     console.error("Error calling contract function:", error);
   }
